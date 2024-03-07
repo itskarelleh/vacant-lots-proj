@@ -9,6 +9,7 @@ import {
   getKeyValue,
   Pagination,
   Spinner,
+  PaginationItemValue,
 } from "@nextui-org/react";
 import PropertyCard from "./PropertyCard";
 import SinglePropertyDetail from "./SinglePropertyDetail";
@@ -118,6 +119,12 @@ const PropertyDetailSection: FC<PropertyDetailSectionProps> = ({
                 showShadow
                 color="secondary"
                 page={page}
+                getItemAriaLabel={(page) => {
+                  if (page === 'next') return 'Go to next page';
+                  if (page === 'prev') return 'Go to previous page';
+                  if (page === 'dots') return 'Jump 5 pages';
+                  return `Go to page ${page}`;
+                }}
                 total={pages}
                 onChange={(newPage) => setPage(newPage)}
               />
@@ -133,6 +140,7 @@ const PropertyDetailSection: FC<PropertyDetailSectionProps> = ({
       </div>
     </>
   );
+
 };
 
 export default PropertyDetailSection;
